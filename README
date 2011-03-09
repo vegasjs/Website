@@ -1,1 +1,18 @@
+------------
 VegasJS site
+------------
+
+Prerequisites:
+
+npm install express
+npm install hbs
+npm install Reston
+
+Instructions:
+
+1. Copy config.js.sample to config.js
+2. Edit config.js and add your meetup.up API key (get it here: http://www.meetup.com/meetup_api/key/)
+3. node app.js
+4. Profit!
+
+

@@ -1,0 +1,6 @@
+module.exports = {
+	meetup: {
+		key:   "PUT YOUR KEY HERE",
+		group: "VegasJS"
+	}
+};
