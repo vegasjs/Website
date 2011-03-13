@@ -50,6 +50,4 @@ app.get('/events', function(req, res){
 // 	console.log( req.params.id );
 // });
 
-
-app.listen(8080);
-
+app.listen(80);
