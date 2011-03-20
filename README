@@ -11,9 +11,11 @@ npm install underscore
 
 Instructions:
 
-1. Copy config.js.sample to config.js
-2. Edit config.js and add your meetup.up API key (get it here: http://www.meetup.com/meetup_api/key/)
-3. node app.js
-4. Profit!
+1. Add your meetup.up API key (get it here: http://www.meetup.com/meetup_api/key/) as an environment variable
+
+export MEETUP_API_KEY=[meetup key]
+
+2. node app.js
+3. Profit!
 
 
