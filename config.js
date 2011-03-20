@@ -1,6 +1,6 @@
 module.exports = {
 	meetup: {
-		key:   "PUT YOUR KEY HERE",
+		key:   process.env.MEETUP_API_KEY,
 		group: "VegasJS"
 	}
 };

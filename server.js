@@ -5,7 +5,7 @@ var app = require('express').createServer(),
 
 // Configuration
 var meetup = new Meetup({
-  group: 'vegasjs',
+  group: config.meetup.group,
   key: config.meetup.key
 });
 
