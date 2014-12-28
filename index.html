@@ -7,23 +7,40 @@
 </head>
 <body>
 
-<!-- 	<h1>This is a test.</h1>
-
-	<ul id="menu">
-		<li><a href="">About</a></li>
-		<li><a href="">Past Talks</a></li>
-		<li><a href="">Suggest a Talk</a></li>
-		<li><a href="">Resources</a></li>
-		<li><a href="">Chat</a></li>
-	</ul> -->
-
 	<canvas id="starfield"></canvas>
 	<div id="foreground">
-		<h1>Test</h1>
+		<ul id="menu">
+			<li><a href="#about">About</a></li>
+			<li><a href="#talks">Past Talks</a></li>
+			<li><a href="#suggest">Suggest a Talk</a></li>
+			<li><a href="#resources">Resources</a></li>
+			<li><a href="#chat">Chat</a></li>
+		</ul>
+		<a name="about"></a>
+		<div class="dialog" id="about">
+			About
+		</div>
+		<a name="talks"></a>
+		<div class="dialog" id="talks">
+			Talks
+		</div>
+		<a name="suggest"></a>
+		<div class="dialog" id="suggest">
+			Suggest a talk
+		</div>
+		<a name="resources"></a>
+		<div class="dialog" id="resources">
+			Resources
+		</div>
+		<a name="chat"></a>
+		<div class="dialog" id="chat">
+			Chat
+		</div>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 	<script src="javascript/stars.js"></script>
+	<script src="javascript/menu.js"></script>
 
 </body>
 </html>

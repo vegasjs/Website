@@ -17,6 +17,7 @@ $(function() {
 		PIXEL_SIZE = 10,
 		PIXEL_SPACE = 13,
 		BANNER_X_OFFSET = 0,
+		BANNER_Y_OFFSET = 50,
 		stars = [];
 
 	var canvas = document.getElementById('starfield');
@@ -92,7 +93,7 @@ $(function() {
   					var sinoffset = Math.sin( ticks/15 + x*13 ) * 3;
 						ctx.fillRect( 
 	  					BANNER_X_OFFSET + (x * PIXEL_SPACE), 
-	  					sinoffset + 100 + (y * PIXEL_SPACE), 
+	  					sinoffset + BANNER_Y_OFFSET + (y * PIXEL_SPACE), 
 	  					PIXEL_SIZE, PIXEL_SIZE
 	  				);				
   				}
