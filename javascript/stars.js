@@ -1,15 +1,15 @@
 $(function() {
 
 	var banner = [
-"### ###                              ###  ####      ##  ##   ",
-" #   #                                #  #    #    #      #  ",
-" #   #   ####   ## #  ###    ####     #  #         #      #  ",
-" #   #  #    # #  ##     #  #         #   ####    #        # ",
-" #   #  ###### #  ##  ####   ###      #       #    #      #  ",
-"  # #   #       ## # #   #      #     #  #    #    #      #  ",
-"   #     #####     #  ### # ####  #   #   ####      ##  ##   ",
-"               ####                ###                       "
-];
+		"### ###                              %%%  %%%%      %%  %%   ",
+		" #   #                                %  %    %    %      %  ",
+		" #   #   ####   ## #  ###    ####     %  %         %      %  ",
+		" #   #  #    # #  ##     #  #         %   %%%%    %        % ",
+		" #   #  ###### #  ##  ####   ###      %       %    %      %  ",
+		"  # #   #       ## # #   #      #     %  %    %    %      %  ",
+		"   #     #####     #  ### # ####  %   %   %%%%      %%  %%   ",
+		"               ####                %%%                       "
+	];
 
 	var NUM_STARS = 200,
 		STAR_SIZE = 4,
@@ -83,18 +83,18 @@ $(function() {
   			}
   		}
 
+
   		// Draw Banner
   		for (y in banner) {
   			for (x in banner[y] ) {
-  				if ( banner[y][x] == '#' ) {
-  					var size = 6 + Math.ceil(Math.random() * 7);
-  					var offset = (PIXEL_SPACE/2) - (size/2);
-  					ctx.fillStyle = randomColor();
-	  				ctx.fillRect( 
-	  					offset + BANNER_X_OFFSET + (x * PIXEL_SPACE), 
-	  					offset + 100 + (y * PIXEL_SPACE), 
-	  					size, size 
-	  				);	
+  				if ( banner[y][x] != ' ' ) {
+  					ctx.fillStyle = banner[y][x] == '%' ? randomColor() : "#FFF";
+  					var sinoffset = Math.sin( ticks/15 + x*13 ) * 3;
+						ctx.fillRect( 
+	  					BANNER_X_OFFSET + (x * PIXEL_SPACE), 
+	  					sinoffset + 100 + (y * PIXEL_SPACE), 
+	  					PIXEL_SIZE, PIXEL_SIZE
+	  				);				
   				}
   			}
   		}
