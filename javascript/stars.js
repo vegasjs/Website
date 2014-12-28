@@ -18,9 +18,15 @@ $(function() {
 		PIXEL_SPACE = 13,
 		BANNER_X_OFFSET = 0,
 		BANNER_Y_OFFSET = 50,
-		stars = [];
+		BULLET_VELOCITY = 15,
+		LASER_WIDTH=5,
+		stars = [],
+		bullets = [],
+		ship = new Image(),
+		ship_x = 0;
 
-	var canvas = document.getElementById('starfield');
+	var canvas = document.getElementById('starfield'),
+		ctx = canvas.getContext('2d');
 
 	function resizeCanvas() {
 		canvas.width = window.innerWidth;
@@ -43,6 +49,16 @@ $(function() {
 		}		
 	}
 
+	function updateBullets() {
+		var i = bullets.length;
+		while (i--) {
+			bullets[i].y -= BULLET_VELOCITY;
+			if (bullets[i].y < -20) {
+				bullets.splice(i,1);
+			}
+		}
+	}
+
 	function updateStars() {
 		for (i in stars) {
 			stars[i].y += stars[i].velocity;
@@ -61,6 +77,7 @@ $(function() {
 	function tick() {
 		ticks++;
 		updateStars();
+		updateBullets();
 		updateCanvas();
 	}
 
@@ -70,9 +87,12 @@ $(function() {
 		}
 	}
 
+	function updateShip(e) {
+		ship_x = e.clientX - 32;
+	}
+
 	function updateCanvas() {
 		// Clear
-		var ctx = canvas.getContext('2d');
   		ctx.fillStyle = "#000";
   		ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -83,7 +103,6 @@ $(function() {
 	  			ctx.fillRect( stars[i].x, stars[i].y, STAR_SIZE, STAR_SIZE );
   			}
   		}
-
 
   		// Draw Banner
   		for (y in banner) {
@@ -99,16 +118,40 @@ $(function() {
   				}
   			}
   		}
+
+  		// Draw Bullets
+  		for (i in bullets) {
+  			ctx.fillStyle = ticks % 2 == 0 ? "#F0F" : "#0FF";
+  			ctx.fillRect( bullets[i].x, bullets[i].y, LASER_WIDTH, 10 );
+  		}
+
+  		// Draw Ship
+  		ctx.drawImage(ship, ship_x, canvas.height - 80, 64, 64 );
+	}
+
+	function shoot(e) {
+		bullets.push({
+			x: e.clientX - LASER_WIDTH/2,
+			y: canvas.height - 80
+		});
 	}
 
 	function init() {
 		resizeCanvas();
+
+		ctx.webkitImageSmoothingEnabled = false;
+		ctx.mozImageSmoothingEnabled = false;
+		ctx.imageSmoothingEnabled = false;
+
 		createStars();
 		updateCanvas();
+		ship.src = "images/ship.gif"
 	}
 	init();
 
 	window.addEventListener('resize', resizeCanvas, false);
+	window.addEventListener('mousemove', updateShip, false);
+	window.addEventListener('click', shoot, false);
 
 	setInterval(tick, 25);
 
