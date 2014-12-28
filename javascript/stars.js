@@ -18,11 +18,12 @@ $(function() {
 		PIXEL_SPACE = 13,
 		BANNER_X_OFFSET = 0,
 		BANNER_Y_OFFSET = 50,
-		BULLET_VELOCITY = 15,
+		BULLET_SPEED = 15,
 		LASER_WIDTH=5,
 		stars = [],
 		bullets = [],
 		banner_pixels = [],
+		debris = [],
 		ship = new Image(),
 		ship_x = 0;
 
@@ -43,7 +44,7 @@ $(function() {
 		return {
 			x: Math.ceil(Math.random() * canvas.width),
 			y: Math.ceil(Math.random() * canvas.height),
-			velocity: (Math.random() * 5) + 2,
+			speed: (Math.random() * 5) + 2,
 			color: randomColor(),
 			blink: Math.ceil( Math.random() * 5),
 			on: Math.random() > 0.5 ? true : false
@@ -53,7 +54,7 @@ $(function() {
 	function updateBullets() {
 		var i = bullets.length;
 		BULLETS: while (i--) {
-			bullets[i].y -= BULLET_VELOCITY;
+			bullets[i].y -= BULLET_SPEED;
 			if (bullets[i].y < -20) {
 				bullets.splice(i,1);
 				continue;
@@ -64,6 +65,8 @@ $(function() {
 					 bullets[i].x > banner_pixels[j].x && 
 					 bullets[i].x < banner_pixels[j].x + PIXEL_SIZE ) {
 					bullets.splice(i,1);
+					createExplosion( banner_pixels[j].x + PIXEL_SIZE/2, 
+						banner_pixels[j].sin_offset + banner_pixels[j].y + PIXEL_SIZE/2 );
 					banner_pixels.splice(j,1);
 					continue BULLETS;
 				}
@@ -73,7 +76,7 @@ $(function() {
 
 	function updateStars() {
 		for (i in stars) {
-			stars[i].y += stars[i].velocity;
+			stars[i].y += stars[i].speed;
 			if (stars[i].y > canvas.height) {
 				stars[i] = randomStar();
 				stars[i].y = 0 - Math.random() * 50;
@@ -86,11 +89,38 @@ $(function() {
 		}
 	}
 
+	function createExplosion(x,y) {
+		var bits = 20 + Math.ceil( Math.random() * 10);
+		while(bits--) {
+			debris.push({
+				x: x,
+				y: y,
+				speed: Math.random() * 10,
+				angle: Math.ceil( Math.random() * 360 ),
+				life: Math.ceil( Math.random() * 10 )
+			});
+		}
+	}
+
+	function updateDebris() {
+		var i = debris.length;
+		while(i--) {
+			// Get rid of old debris
+			if ( debris[i].life-- < 0 ) {
+				debris.splice(i,1);
+				continue;
+			}
+			debris[i].x += debris[i].speed * Math.cos( debris[i].angle );
+			debris[i].y += debris[i].speed * Math.sin( debris[i].angle );
+		}
+	}
+
 	function tick() {
 		ticks++;
 		updateStars();
 		updateBanner();
 		updateBullets();
+		updateDebris();
 		updateCanvas();
 	}
 
@@ -122,6 +152,17 @@ $(function() {
 			ctx.fillStyle = banner_pixels[i].color == '%' ? randomColor() : "#FFF";
 			ctx.fillRect( banner_pixels[i].x, banner_pixels[i].sin_offset + banner_pixels[i].y, 
 				PIXEL_SIZE, PIXEL_SIZE );	
+  		}
+
+  		// Draw Debris
+  		for (i in debris) {
+  			ctx.fillStyle = ticks % 2 == 0 ? "#F00" : "#FF0";
+  			ctx.fillRect( 
+  				debris[i].x, 
+  				debris[i].y, 
+  				1 + (Math.random() * 6), 
+  				1 + (Math.random() * 6)
+			);
   		}
 
   		// Draw Bullets
