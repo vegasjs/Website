@@ -22,6 +22,7 @@ $(function() {
 		LASER_WIDTH=5,
 		stars = [],
 		bullets = [],
+		banner_pixels = [],
 		ship = new Image(),
 		ship_x = 0;
 
@@ -51,10 +52,21 @@ $(function() {
 
 	function updateBullets() {
 		var i = bullets.length;
-		while (i--) {
+		BULLETS: while (i--) {
 			bullets[i].y -= BULLET_VELOCITY;
 			if (bullets[i].y < -20) {
 				bullets.splice(i,1);
+				continue;
+			}
+			var j = banner_pixels.length;
+			while (j--) {
+				if ( bullets[i].y <= banner_pixels[j].y + banner_pixels[j].sin_offset &&
+					 bullets[i].x > banner_pixels[j].x && 
+					 bullets[i].x < banner_pixels[j].x + PIXEL_SIZE ) {
+					bullets.splice(i,1);
+					banner_pixels.splice(j,1);
+					continue BULLETS;
+				}
 			}
 		}
 	}
@@ -77,6 +89,7 @@ $(function() {
 	function tick() {
 		ticks++;
 		updateStars();
+		updateBanner();
 		updateBullets();
 		updateCanvas();
 	}
@@ -105,18 +118,10 @@ $(function() {
   		}
 
   		// Draw Banner
-  		for (y in banner) {
-  			for (x in banner[y] ) {
-  				if ( banner[y][x] != ' ' ) {
-  					ctx.fillStyle = banner[y][x] == '%' ? randomColor() : "#FFF";
-  					var sinoffset = Math.sin( ticks/15 + x*13 ) * 3;
-						ctx.fillRect( 
-	  					BANNER_X_OFFSET + (x * PIXEL_SPACE), 
-	  					sinoffset + BANNER_Y_OFFSET + (y * PIXEL_SPACE), 
-	  					PIXEL_SIZE, PIXEL_SIZE
-	  				);				
-  				}
-  			}
+  		for (i in banner_pixels ) {
+			ctx.fillStyle = banner_pixels[i].color == '%' ? randomColor() : "#FFF";
+			ctx.fillRect( banner_pixels[i].x, banner_pixels[i].sin_offset + banner_pixels[i].y, 
+				PIXEL_SIZE, PIXEL_SIZE );	
   		}
 
   		// Draw Bullets
@@ -136,6 +141,27 @@ $(function() {
 		});
 	}
 
+	function updateBanner() {
+		for (i in banner_pixels) {
+			banner_pixels[i].sin_offset = Math.sin( ticks/15 + banner_pixels[i].x*13 ) * 3;	
+		}
+	}
+
+	function pixelizeBanner() {
+  		for (y in banner) {
+  			for (x in banner[y] ) {
+  				if ( banner[y][x] != ' ' ) {
+  					banner_pixels.push({
+  						x: BANNER_X_OFFSET + (x * PIXEL_SPACE),
+  						y: BANNER_Y_OFFSET + (y * PIXEL_SPACE),
+  						color: banner[y][x],
+  						sin_offset: 0
+  					});
+  				}
+  			}
+  		}
+	}
+
 	function init() {
 		resizeCanvas();
 
@@ -144,6 +170,7 @@ $(function() {
 		ctx.imageSmoothingEnabled = false;
 
 		createStars();
+		pixelizeBanner();
 		updateCanvas();
 		ship.src = "images/ship.gif"
 	}
