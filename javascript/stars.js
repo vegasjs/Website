@@ -27,6 +27,15 @@ $(function() {
 		ship = new Image(),
 		ship_x = 0;
 
+	var sounds = jsfxlib.createWaves({
+		explosion: ["noise",0.0000,0.4000,0.0000,0.2460,0.6750,0.4840,20.0000,831.0000,2400.0000,
+			-0.2220,0.0000,0.0000,0.0100,0.0003,0.0000,0.0000,0.0000,0.0000,0.0000,0.3016,0.0000,
+			0.0000,1.0000,0.0000,0.0000,0.0000,0.0000],
+		laser: ["saw",0.0000,0.4000,0.0000,0.0540,0.0000,0.1420,20.0000,797.0000,2400.0000,
+			-0.4340,0.0000,0.0000,0.0100,0.0003,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,
+			0.0000,0.0000,1.0000,0.0000,0.0000,0.2480,0.0000]
+	});
+
 	var canvas = document.getElementById('starfield'),
 		ctx = canvas.getContext('2d');
 
@@ -90,6 +99,7 @@ $(function() {
 	}
 
 	function createExplosion(x,y) {
+		sounds.explosion.cloneNode(true).play();
 		var bits = 20 + Math.ceil( Math.random() * 10);
 		while(bits--) {
 			debris.push({
@@ -176,6 +186,8 @@ $(function() {
 	}
 
 	function shoot(e) {
+		sounds.laser.cloneNode(true).play();
+		console.log( sounds.laser );
 		bullets.push({
 			x: e.clientX - LASER_WIDTH/2,
 			y: canvas.height - 80
