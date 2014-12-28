@@ -8,13 +8,14 @@ $(function() {
 " #   #  ###### #  ##  ####   ###      #       #    #      #  ",
 "  # #   #       ## # #   #      #     #  #    #    #      #  ",
 "   #     #####     #  ### # ####  #   #   ####      ##  ##   ",
-"               ####                ###                         "
+"               ####                ###                       "
 ];
 
 	var NUM_STARS = 200,
 		STAR_SIZE = 4,
 		ticks = 0,
 		PIXEL_SIZE = 10,
+		PIXEL_SPACE = 13,
 		BANNER_X_OFFSET = 0,
 		stars = [];
 
@@ -23,7 +24,7 @@ $(function() {
 	function resizeCanvas() {
 		canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
-		BANNER_X_OFFSET = canvas.width / 2 - (banner[0].length * PIXEL_SIZE) / 2;
+		BANNER_X_OFFSET = canvas.width / 2 - (banner[0].length * PIXEL_SPACE) / 2;
 	}
 
 	function randomColor() {
@@ -86,11 +87,13 @@ $(function() {
   		for (y in banner) {
   			for (x in banner[y] ) {
   				if ( banner[y][x] == '#' ) {
+  					var size = 6 + Math.ceil(Math.random() * 7);
+  					var offset = (PIXEL_SPACE/2) - (size/2);
   					ctx.fillStyle = randomColor();
 	  				ctx.fillRect( 
-	  					BANNER_X_OFFSET + (x * PIXEL_SIZE), 
-	  					100 + (y * PIXEL_SIZE), 
-	  					PIXEL_SIZE, PIXEL_SIZE 
+	  					offset + BANNER_X_OFFSET + (x * PIXEL_SPACE), 
+	  					offset + 100 + (y * PIXEL_SPACE), 
+	  					size, size 
 	  				);	
   				}
   			}
