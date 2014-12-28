@@ -17,15 +17,15 @@ h1 {
 }
 
 body {
-	background-color: gray;
+	background-color: black;
 }
 
 a { 
-    color: white; 
+    color: #00BFFF; 
     text-decoration: none;
 }
 
-a:hover { color: #bbb; }
+a:hover { color: #00FFFF; }
 
 #menu {
     font-family: 'press_start';
@@ -39,6 +39,10 @@ a:hover { color: #bbb; }
 #menu li {
     margin: 0 10px; 
     display: inline;
+}
+
+#menu a {
+    color: white;
 }
 
 #starfield {
@@ -65,7 +69,7 @@ a:hover { color: #bbb; }
     border-image: url('../images/border.gif') 12 repeat;
     border-style: solid;
     border-width: 12px;
-    margin-top: 50px;
+    margin-top: 30px;
     width: 800px;
     margin-left: auto;
     margin-right: auto;
@@ -76,6 +80,7 @@ a:hover { color: #bbb; }
     font-size: 16px;
     background-color: rgba(0,0,0,0.75);
     display: none;
+    line-height: 30px;
 }
 
 .dialog:first-of-type {
