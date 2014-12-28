@@ -25,6 +25,7 @@ $(function() {
 		banner_pixels = [],
 		debris = [],
 		ship = new Image(),
+		ship_loaded = false,
 		ship_x = 0;
 
 	var sounds = jsfxlib.createWaves({
@@ -182,7 +183,8 @@ $(function() {
   		}
 
   		// Draw Ship
-  		ctx.drawImage(ship, ship_x, canvas.height - 80, 64, 64 );
+  		if ( ship_loaded )
+  			ctx.drawImage(ship, ship_x, canvas.height - 80, 64, 64 );
 	}
 
 	function shoot(e) {
@@ -225,7 +227,11 @@ $(function() {
 		createStars();
 		pixelizeBanner();
 		updateCanvas();
-		ship.src = "images/ship.gif"
+		ship.src = "images/ship.gif";
+		ship.onload = function() {
+			ship_loaded = true;
+		}
+
 	}
 	init();
 
