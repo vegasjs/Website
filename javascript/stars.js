@@ -12,7 +12,7 @@ $(function() {
 	];
 
 	var NUM_STARS = 200,
-		STAR_SIZE = 4,
+		STAR_SIZE = 3,
 		ticks = 0,
 		PIXEL_SIZE = 10,
 		PIXEL_SPACE = 13,
@@ -72,10 +72,10 @@ $(function() {
 			var j = banner_pixels.length;
 			while (j--) {
 				if ( bullets[i].y <= banner_pixels[j].y + banner_pixels[j].sin_offset &&
-					 bullets[i].x > banner_pixels[j].x && 
-					 bullets[i].x < banner_pixels[j].x + PIXEL_SIZE ) {
+					 bullets[i].x > banner_pixels[j].x + banner_pixels[j].sin_offset && 
+					 bullets[i].x < banner_pixels[j].x + banner_pixels[j].sin_offset + PIXEL_SIZE ) {
 					bullets.splice(i,1);
-					createExplosion( banner_pixels[j].x + PIXEL_SIZE/2, 
+					createExplosion( banner_pixels[j].sin_offset + banner_pixels[j].x + PIXEL_SIZE/2, 
 						banner_pixels[j].sin_offset + banner_pixels[j].y + PIXEL_SIZE/2 );
 					banner_pixels.splice(j,1);
 					continue BULLETS;
@@ -161,7 +161,7 @@ $(function() {
   		// Draw Banner
   		for (i in banner_pixels ) {
 			ctx.fillStyle = banner_pixels[i].color == '%' ? randomColor() : "#FFF";
-			ctx.fillRect( banner_pixels[i].x, banner_pixels[i].sin_offset + banner_pixels[i].y, 
+			ctx.fillRect( banner_pixels[i].sin_offset + banner_pixels[i].x, banner_pixels[i].sin_offset + banner_pixels[i].y, 
 				PIXEL_SIZE, PIXEL_SIZE );	
   		}
 
@@ -198,7 +198,7 @@ $(function() {
 
 	function updateBanner() {
 		for (i in banner_pixels) {
-			banner_pixels[i].sin_offset = Math.sin( ticks/15 + banner_pixels[i].x*13 ) * 3;	
+			banner_pixels[i].sin_offset = Math.sin( ticks/12 + banner_pixels[i].x*13 ) * 3;	
 		}
 	}
 
