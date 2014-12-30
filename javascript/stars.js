@@ -24,8 +24,11 @@ $(function() {
 		bullets = [],
 		banner_pixels = [],
 		debris = [],
-		ship = new Image(),
 		ship_loaded = false,
+		ship_images = [],
+		ship_files = [ 'images/ship-1.png', 'images/ship-2.png', 'images/ship-3.png', 
+			'images/ship-4.png', 'images/ship-5.png' ],
+		ship_frame = 0,
 		ship_x = 0;
 
 	var sounds = jsfxlib.createWaves({
@@ -132,6 +135,7 @@ $(function() {
 		updateBanner();
 		updateBullets();
 		updateDebris();
+		updateShipAnimation();
 		updateCanvas();
 	}
 
@@ -141,8 +145,14 @@ $(function() {
 		}
 	}
 
-	function updateShip(e) {
+	function updateShipPosition(e) {
 		ship_x = e.clientX - 32;
+	}
+
+	function updateShipAnimation() {
+		ship_frame++;
+		if (ship_frame >= ship_images.length)
+			ship_frame = 0;
 	}
 
 	function updateCanvas() {
@@ -184,7 +194,7 @@ $(function() {
 
   		// Draw Ship
   		if ( ship_loaded )
-  			ctx.drawImage(ship, ship_x, canvas.height - 80, 64, 64 );
+  			ctx.drawImage(ship_images[ship_frame], ship_x, canvas.height - 80, 64, 64 );
 	}
 
 	function shoot(e) {
@@ -216,26 +226,32 @@ $(function() {
   		}
 	}
 
+	function loadShip() {
+		var frame_count = ship_files.length,
+			frames_loaded = 0;
+		for ( i in ship_files ) {
+			var frame = new Image();
+			frame.src = ship_files[ i ];
+			frame.onload = function() {
+				if (++frames_loaded == frame_count) {
+					ship_loaded = true;
+				}
+			}
+			ship_images.push( frame );
+		}
+	}
+
 	function init() {
 		resizeCanvas();
-
-		ctx.webkitImageSmoothingEnabled = false;
-		ctx.mozImageSmoothingEnabled = false;
-		ctx.imageSmoothingEnabled = false;
-
+		loadShip();
 		createStars();
 		pixelizeBanner();
 		updateCanvas();
-		ship.src = "images/ship.gif";
-		ship.onload = function() {
-			ship_loaded = true;
-		}
-
 	}
 	init();
 
 	window.addEventListener('resize', resizeCanvas, false);
-	window.addEventListener('mousemove', updateShip, false);
+	window.addEventListener('mousemove', updateShipPosition, false);
 	window.addEventListener('click', shoot, false);
 
 	setInterval(tick, 25);
