@@ -86,3 +86,13 @@ a:hover { color: #00FFFF; }
 .dialog:first-of-type {
     display: block;
 }
+
+.introText {
+  font-family:"Courier New", Courier, monospace;
+  font-size:12px;
+}
+
+.dialog section {
+  margin-bottom:17px;
+}
+

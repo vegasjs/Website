@@ -198,6 +198,10 @@ $(function() {
 	}
 
 	function shoot(e) {
+
+    // Don't Shoot links!
+    if (e.target.tagName === 'A') return false;
+
 		sounds.laser.cloneNode(true).play();
 		bullets.push({
 			x: e.clientX - LASER_WIDTH/2,
