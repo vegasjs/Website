@@ -20,8 +20,8 @@ body {
 	background-color: black;
 }
 
-a { 
-    color: #00BFFF; 
+a {
+    color: #00BFFF;
     text-decoration: none;
 }
 
@@ -30,14 +30,14 @@ a:hover { color: #00FFFF; }
 #menu {
     font-family: 'press_start';
     text-transform: uppercase;
-    list-style: none outside none; 
-    margin: 180px 0 0 0; 
-    padding: 0; 
+    list-style: none outside none;
+    margin: 180px 0 0 0;
+    padding: 0;
     text-align: center;
 }
 
 #menu li {
-    margin: 0 10px; 
+    margin: 0 10px;
     display: inline;
 }
 
@@ -87,12 +87,38 @@ a:hover { color: #00FFFF; }
     display: block;
 }
 
-.introText {
-  font-family:"Courier New", Courier, monospace;
-  font-size:12px;
+.dialog p {
+  margin-bottom: 10px;
+  text-indent: 16px;
+}
+
+.dialog p:last-child {
+  margin-bottom: 0;
 }
 
 .dialog section {
   margin-bottom:17px;
 }
 
+/* Decorated Links */
+
+a.slack {
+  background: url(../images/slack.png) no-repeat;
+  padding-left: 24px;
+}
+
+a.github {
+  background: url(../images/github.png) no-repeat;
+  padding-left: 24px;
+}
+
+a.meetup {
+  background: url(../images/meetup.png) no-repeat;
+  padding-left: 24px;
+}
+
+.love {
+  background: url(../images/heart.png) no-repeat;
+  padding-left: 24px;
+
+}
