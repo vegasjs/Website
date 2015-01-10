@@ -16,13 +16,6 @@ h1 {
 	color: white;
 }
 
-h2 {
-  font-size: 18px
-  color: #AAA;
-  margin-top: 16px;
-}
-
-
 body {
 	background-color: black;
 }
@@ -44,12 +37,17 @@ a:hover { color: #00FFFF; }
 }
 
 #menu li {
-    margin: 0 10px;
+    margin: 0 5px;
     display: inline;
 }
 
 #menu a {
+    padding-left: 24px;
     color: white;
+}
+
+#menu a.current {
+  background: url(../images/cursor.png) no-repeat;
 }
 
 #starfield {
@@ -88,6 +86,11 @@ a:hover { color: #00FFFF; }
     background-color: rgba(0,0,0,0.75);
     display: none;
     line-height: 30px;
+}
+
+.dialog > h2 {
+  color: #BBB;
+  margin-top: 16px;
 }
 
 .dialog:first-of-type {
