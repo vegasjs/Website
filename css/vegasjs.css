@@ -100,6 +100,29 @@ a:hover { color: #00FFFF; }
   margin-bottom:17px;
 }
 
+
+/* List Items */
+
+.dialog ul {
+  margin-top: 16px;
+}
+
+.dialog li {
+  background-repeat: no-repeat;
+  padding-left: 24px;
+  line-height: 16px;
+  margin-bottom: 16px;
+}
+.dialog li:nth-child(5n+1) { background-image: url(../images/strawberry.png); }
+.dialog li:nth-child(5n+2) { background-image: url(../images/orange.png); }
+.dialog li:nth-child(5n+3) { background-image: url(../images/cherries.png); }
+.dialog li:nth-child(5n+4) { background-image: url(../images/melon.png); }
+.dialog li:nth-child(5n+5) { background-image: url(../images/apple.png); }
+
+.dialog li:last-child {
+  margin-bottom: 0;
+}
+
 /* Decorated Links */
 
 a.slack {
@@ -119,6 +142,9 @@ a.meetup {
 
 .love {
   background: url(../images/heart.png) no-repeat;
-  padding-left: 24px;
-
+  text-indent: -9999px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  overflow: hidden;
 }
