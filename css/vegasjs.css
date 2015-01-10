@@ -10,11 +10,18 @@
 }
 
 h1 {
-	font-size: 15pt;
+	font-size: 16px;
 	font-family: 'press_start';
 	text-transform: uppercase;
 	color: white;
 }
+
+h2 {
+  font-size: 18px
+  color: #AAA;
+  margin-top: 16px;
+}
+
 
 body {
 	background-color: black;
@@ -108,18 +115,21 @@ a:hover { color: #00FFFF; }
 }
 
 .dialog li {
-  background-repeat: no-repeat;
   padding-left: 24px;
+}
+
+ul.fruit li {
+  background-repeat: no-repeat;
   line-height: 16px;
   margin-bottom: 16px;
 }
-.dialog li:nth-child(5n+1) { background-image: url(../images/strawberry.png); }
-.dialog li:nth-child(5n+2) { background-image: url(../images/orange.png); }
-.dialog li:nth-child(5n+3) { background-image: url(../images/cherries.png); }
-.dialog li:nth-child(5n+4) { background-image: url(../images/melon.png); }
-.dialog li:nth-child(5n+5) { background-image: url(../images/apple.png); }
 
-.dialog li:last-child {
+ul.fruit li:nth-child(5n+1) { background-image: url(../images/strawberry.png); }
+ul.fruit li:nth-child(5n+2) { background-image: url(../images/orange.png); }
+ul.fruit li:nth-child(5n+3) { background-image: url(../images/cherries.png); }
+ul.fruit li:nth-child(5n+4) { background-image: url(../images/melon.png); }
+ul.fruit li:nth-child(5n+5) { background-image: url(../images/apple.png); }
+ul.fruit li:last-child {
   margin-bottom: 0;
 }
 
@@ -137,6 +147,11 @@ a.github {
 
 a.meetup {
   background: url(../images/meetup.png) no-repeat;
+  padding-left: 24px;
+}
+
+a.youtube {
+  background: url(../images/youtube.png) no-repeat;
   padding-left: 24px;
 }
 
