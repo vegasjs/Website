@@ -26,7 +26,7 @@ $(function() {
 		debris = [],
 		ship_loaded = false,
 		ship_images = [],
-		ship_files = [ 'images/ship-1.png', 'images/ship-2.png', 'images/ship-3.png', 
+		ship_files = [ 'images/ship-1.png', 'images/ship-2.png', 'images/ship-3.png',
 			'images/ship-4.png', 'images/ship-5.png' ],
 		ship_frame = 0,
 		ship_x = 0;
@@ -51,7 +51,7 @@ $(function() {
 
 	function randomColor() {
 		return '#'+(Math.random()*0xFFFFFF<<0).toString(16);
-	}	
+	}
 
 	function randomStar() {
 		return {
@@ -61,7 +61,7 @@ $(function() {
 			color: randomColor(),
 			blink: Math.ceil( Math.random() * 5),
 			on: Math.random() > 0.5 ? true : false
-		}		
+		}
 	}
 
 	function updateBullets() {
@@ -75,10 +75,10 @@ $(function() {
 			var j = banner_pixels.length;
 			while (j--) {
 				if ( bullets[i].y <= banner_pixels[j].y + banner_pixels[j].sin_offset &&
-					 bullets[i].x > banner_pixels[j].x + banner_pixels[j].sin_offset && 
+					 bullets[i].x > banner_pixels[j].x + banner_pixels[j].sin_offset &&
 					 bullets[i].x < banner_pixels[j].x + banner_pixels[j].sin_offset + PIXEL_SIZE ) {
 					bullets.splice(i,1);
-					createExplosion( banner_pixels[j].sin_offset + banner_pixels[j].x + PIXEL_SIZE/2, 
+					createExplosion( banner_pixels[j].sin_offset + banner_pixels[j].x + PIXEL_SIZE/2,
 						banner_pixels[j].sin_offset + banner_pixels[j].y + PIXEL_SIZE/2 );
 					banner_pixels.splice(j,1);
 					continue BULLETS;
@@ -97,7 +97,7 @@ $(function() {
 			if ( stars[i].blink < 4 ) {
 				stars[i].on = true;
 			} else if (ticks % stars[i].blink == 0) {
-				stars[i].on = !stars[i].on; 
+				stars[i].on = !stars[i].on;
 			}
 		}
 	}
@@ -171,17 +171,19 @@ $(function() {
   		// Draw Banner
   		for (i in banner_pixels ) {
 			ctx.fillStyle = banner_pixels[i].color == '%' ? randomColor() : "#FFF";
-			ctx.fillRect( banner_pixels[i].sin_offset + banner_pixels[i].x, banner_pixels[i].sin_offset + banner_pixels[i].y, 
-				PIXEL_SIZE, PIXEL_SIZE );	
+			ctx.fillRect(
+				BANNER_X_OFFSET + banner_pixels[i].sin_offset + banner_pixels[i].x,
+				BANNER_Y_OFFSET + banner_pixels[i].sin_offset + banner_pixels[i].y,
+				PIXEL_SIZE, PIXEL_SIZE );
   		}
 
   		// Draw Debris
   		for (i in debris) {
   			ctx.fillStyle = ticks % 2 == 0 ? "#F00" : "#FF0";
-  			ctx.fillRect( 
-  				debris[i].x, 
-  				debris[i].y, 
-  				1 + (Math.random() * 6), 
+  			ctx.fillRect(
+  				debris[i].x,
+  				debris[i].y,
+  				1 + (Math.random() * 6),
   				1 + (Math.random() * 6)
 			);
   		}
@@ -211,7 +213,7 @@ $(function() {
 
 	function updateBanner() {
 		for (i in banner_pixels) {
-			banner_pixels[i].sin_offset = Math.sin( ticks/12 + banner_pixels[i].x*13 ) * 3;	
+			banner_pixels[i].sin_offset = Math.sin( ticks/12 + banner_pixels[i].x*13 ) * 3;
 		}
 	}
 
@@ -220,8 +222,8 @@ $(function() {
   			for (x in banner[y] ) {
   				if ( banner[y][x] != ' ' ) {
   					banner_pixels.push({
-  						x: BANNER_X_OFFSET + (x * PIXEL_SPACE),
-  						y: BANNER_Y_OFFSET + (y * PIXEL_SPACE),
+  						x: x * PIXEL_SPACE,
+  						y: y * PIXEL_SPACE,
   						color: banner[y][x],
   						sin_offset: 0
   					});

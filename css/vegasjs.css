@@ -39,16 +39,18 @@ a:hover { color: #00FFFF; }
 #menu li {
     margin: 0 5px;
     display: inline;
+    line-height: 16px;
 }
 
 #menu a {
-    padding-left: 24px;
     color: white;
+    padding-left: 24px;
 }
 
 #menu a.current {
   background: url(../images/cursor.png) no-repeat;
 }
+
 
 #starfield {
     position: absolute;
