@@ -74,12 +74,13 @@ $(function() {
 			}
 			var j = banner_pixels.length;
 			while (j--) {
-				if ( bullets[i].y <= banner_pixels[j].y + banner_pixels[j].sin_offset &&
-					 bullets[i].x > banner_pixels[j].x + banner_pixels[j].sin_offset &&
-					 bullets[i].x < banner_pixels[j].x + banner_pixels[j].sin_offset + PIXEL_SIZE ) {
+				var banner_x = banner_pixels[j].x + BANNER_X_OFFSET + banner_pixels[j].sin_offset,
+						banner_y = banner_pixels[j].y + BANNER_Y_OFFSET + banner_pixels[j].sin_offset;
+				if ( bullets[i].y <= banner_y &&
+					 bullets[i].x >  banner_x &&
+					 bullets[i].x < banner_x + PIXEL_SIZE ) {
 					bullets.splice(i,1);
-					createExplosion( banner_pixels[j].sin_offset + banner_pixels[j].x + PIXEL_SIZE/2,
-						banner_pixels[j].sin_offset + banner_pixels[j].y + PIXEL_SIZE/2 );
+					createExplosion( banner_x + PIXEL_SIZE/2, banner_y + PIXEL_SIZE/2 );
 					banner_pixels.splice(j,1);
 					continue BULLETS;
 				}
