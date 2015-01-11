@@ -90,6 +90,10 @@ a:hover { color: #00FFFF; }
     line-height: 30px;
 }
 
+.sponsor {
+  vertical-align: baseline;
+}
+
 .dialog > h2 {
   color: #BBB;
   margin-top: 16px;
@@ -225,4 +229,28 @@ a.button {
 
 a.button:hover {
   color: yellow;
+}
+
+#fork {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-family: 'press_start';
+  text-transform: uppercase;
+  color: white;
+  font-size: 16px;
+}
+
+#fork a { color: #FFF; opacity: 0.25; }
+#fork a:hover { opacity: 1; }
+
+#credits {
+  opacity: 0.5;
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  font-family: 'press_start';
+  text-transform: uppercase;
+  color: white;
+  font-size: 10px;
 }

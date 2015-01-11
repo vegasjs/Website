@@ -23,7 +23,7 @@ $(function() {
   }
 
   $.getJSON(signedUrl + "&callback=?", function(data) {
-    var meetup = data.results[0];
+    var meetup = data && data.results && data.results[0];
     if ( meetup ) {
       var date = new Date(meetup.time);
       var data = {

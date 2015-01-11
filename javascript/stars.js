@@ -197,7 +197,7 @@ $(function() {
 
   		// Draw Ship
   		if ( ship_loaded )
-  			ctx.drawImage(ship_images[ship_frame], ship_x, canvas.height - 80, 64, 64 );
+  			ctx.drawImage(ship_images[ship_frame], ship_x, canvas.height - 85, 64, 64 );
 	}
 
 	function shoot(e) {
