@@ -241,7 +241,7 @@ a.button:hover {
   font-size: 16px;
 }
 
-#fork a { color: #FFF; opacity: 0.25; }
+#fork a { color: #FFF; opacity: 0.5; }
 #fork a:hover { opacity: 1; }
 
 #credits {
