@@ -1,6 +1,6 @@
-vegasjs.net
+VegasJS Website
 ===========
 
 :iphone: VegasJS {} web site
 
-http://vegasjs.net
+http://js.prototype.vegas
