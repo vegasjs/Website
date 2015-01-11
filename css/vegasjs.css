@@ -168,3 +168,61 @@ a.youtube {
   height: 16px;
   overflow: hidden;
 }
+
+/* Next Meetup */
+
+#next-meetup {
+  display: none;
+}
+
+#meetup-date {
+  height: 80px;
+  clear: both;
+}
+
+#meetup-date .date {
+  padding-top: 2px;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  line-height: 22px;
+  background: url(../images/calendar.png) no-repeat;
+  width: 64px;
+  height: 64px;
+  float: left;
+}
+
+#meetup-date .day {
+  display: block;
+  color: black;
+  font-size:22px;
+  line-height: 40px;
+}
+
+#meetup-date .info {
+  padding-left: 80px;
+  line-height: 32px;
+}
+
+#next-meetup .name {
+  font-size: 18px;
+}
+
+#meetup-date .count {
+  font-size: 12px;
+}
+
+a.button {
+  -moz-border-image: url('../images/redbutton.png') 6 repeat;
+  -webkit-border-image: url('../images/redbutton.png') 6 repeat;
+  border-image: url('../images/redbutton.png') 6 repeat;
+  border-style: solid;
+  border-width: 6px;
+  background-color: #df0026;
+  color: white;
+  font-size: 12px;
+}
+
+a.button:hover {
+  color: yellow;
+}

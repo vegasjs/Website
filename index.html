@@ -4,6 +4,7 @@
 	<title>VegasJS {}</title>
 	<link href="css/reset.css" media="all" rel="stylesheet" type="text/css" />
 	<link href="css/vegasjs.css" media="all" rel="stylesheet" type="text/css" />
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
 
@@ -20,9 +21,8 @@
 
 		<a name="about"></a>
 		<div class="dialog" id="about">
-			<p>Still working on this!</p>
-			<p>Learn more about our group at <a href="http://meetup.com/vegasjs" class="meetup">Meetup</a>.</p>
-			<p>Fork the code on <a href="https://github.com/vegasjs/vegasjs.net" class="github">GitHub</a>.</p>
+			<div id="next-meetup"></div>
+			Fork the code on <a href="https://github.com/vegasjs/vegasjs.net" class="github">GitHub</a>.
 		</div>
 
 		<a name="talks"></a>
@@ -30,12 +30,12 @@
 
 			* See a full list of past events on <a href="http://www.meetup.com/VegasJS/events/past/?scroll=true" class="meetup">meetup</a>
 
-			<h2>2013-08-06 &gt; VegasJS #21 (again?): Sirius </h2>
+			<h2>2013-08-06 &gt; <a href="http://www.meetup.com/VegasJS/events/129962462/" class="meetup">VegasJS #21 (again?): Sirius</a></h2>
 			<ul>
 				<li><a href="https://www.youtube.com/embed/mU2lFI0u50Q" class="youtube">Marc Martino - Functional JavaScript</a></li>
 			</ul>
 
-			<h2>2013-07-09 &gt; VegasJS #21 : Regulus </h2>
+			<h2>2013-07-09 &gt; <a href="http://www.meetup.com/VegasJS/events/125342212/" class="meetup">VegasJS #21 : Regulus</a> </h2>
 			<ul>
 				<li><a href="https://www.youtube.com/embed/lw7JHztb71g" class="youtube">Dan Harden - HTML 5 Video APIs</a></li>
 				<li><a href="https://www.youtube.com/embed/_UWJgH89S8E" class="youtube">Terence Carroll - PhantomJS</a></li>
@@ -90,6 +90,16 @@
 	<script src="javascript/jsfxlib.js"></script>
 	<script src="javascript/stars.js"></script>
 	<script src="javascript/menu.js"></script>
+	<script src="javascript/meetup.js"></script>
+	<script id="next-meetup-template" type="x-tmpl-mustache">
+		<div id="meetup-date">
+			<div class="date">{{ month }}<span class="day">{{ day }}</span></div>
+			<div class="info">
+				<div class="name">Next up <a href="{{ url }}" class="meetup">{{ name }}</a></div>
+				<div class="count">{{ count }} JavaScripters going! <a href="{{ url }}" class="button">RSVP</a></div>
+			</div>
+		</div>
+	</script>
 
 </body>
 </html>
