@@ -164,6 +164,11 @@ a.youtube {
   padding-left: 24px;
 }
 
+a.slides {
+  background: url(../images/ppt.png) no-repeat;
+  padding-left: 24px;
+}
+
 .love {
   background: url(../images/heart.png) no-repeat;
   text-indent: -9999px;
