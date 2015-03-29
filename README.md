@@ -1,6 +1,4 @@
-VegasJS Website
+VegasJS {} Website
 ===========
 
-:iphone: VegasJS {} web site
-
-http://js.prototype.vegas
+:iphone: [Javascript.Vegas](http://javascript.vegas)
