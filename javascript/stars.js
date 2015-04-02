@@ -201,9 +201,10 @@ $(function() {
 	}
 
 	function shoot(e) {
+		var target = $(e.target);
 
-    // Don't Shoot links!
-    if (e.target.tagName === 'A') return false;
+		// Don't Shoot links or modals!
+		if (target.is('a') || target.is('.modal')) return false;
 
 		sounds.laser.cloneNode(true).play();
 		bullets.push({
