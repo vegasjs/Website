@@ -27,11 +27,18 @@ a {
 
 a:hover { color: #00FFFF; }
 
+#header {
+  display: block;
+  width: 800px;
+  height: 180px;
+  margin: 0 auto;
+  text-indent: -9999px;
+}
+
 #menu {
     font-family: 'press_start';
     text-transform: uppercase;
     list-style: none outside none;
-    margin: 180px 0 0 0;
     padding: 0;
     text-align: center;
 }
