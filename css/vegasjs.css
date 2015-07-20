@@ -9,6 +9,10 @@
     font-style: normal;
 }
 
+html, body {
+  height: 100%;
+}
+
 h1 {
 	font-size: 16px;
 	font-family: 'press_start';
@@ -31,7 +35,7 @@ a:hover { color: #00FFFF; }
   display: block;
   width: 800px;
   height: 180px;
-  margin: 0 auto;
+  margin: 0 auto 20px;
   text-indent: -9999px;
 }
 
@@ -67,7 +71,14 @@ a:hover { color: #00FFFF; }
 }
 
 #foreground {
-    padding: 20px;
+  min-height: 100%;
+  margin-bottom: -25px;
+}
+
+#foreground:after {
+  content: "";
+  display: block;
+  height: 25px;
 }
 
 #logo {
@@ -278,11 +289,10 @@ a.button:hover {
 
 #credits {
   opacity: 0.5;
-  position: absolute;
-  bottom: 5px;
-  right: 10px;
   font-family: 'press_start';
   text-transform: uppercase;
   color: white;
   font-size: 10px;
+  text-align: right;
+  padding: 10px 10px 5px 0;
 }
