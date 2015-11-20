@@ -21,19 +21,26 @@ $(function() {
     });
     return templateCopy;
   }
-
   $.getJSON(signedUrl + "&callback=?", function(data) {
-    var meetup = data && data.results && data.results[0];
-    if ( meetup ) {
-      var date = new Date(meetup.time);
-      var data = {
-        month: months[ date.getMonth() ],
-        day: date.getDate(),
-        url: meetup.event_url,
-        count: meetup.yes_rsvp_count,
-        name: meetup.name
-      };
-      $('#next-meetup').html( notMustache( meetupTemplate, data ) ).slideDown();
+    if (data && data.results) {
+        var meetup = null;
+        for (var i=0;i<data.results.length;i++) {
+          if ( data.results[i].name.match(/VegasJS/i) ) {
+            meetup = data.results[i];
+            break;
+          }
+        }
+        if ( meetup ) {
+          var date = new Date(meetup.time);
+          var data = {
+            month: months[ date.getMonth() ],
+            day: date.getDate(),
+            url: meetup.event_url,
+            count: meetup.yes_rsvp_count,
+            name: meetup.name
+          };
+          $('#next-meetup').html( notMustache( meetupTemplate, data ) ).slideDown();
+        }
     }
   });
 
